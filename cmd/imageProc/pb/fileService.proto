@@ -1,0 +1,30 @@
+syntax = "proto3";
+
+package imageProc;
+
+option go_package = "../pb";
+
+message FileUploadRequest{
+  bytes fileData = 1;
+  string fileName = 2;
+}
+
+message FileUploadResponse{
+  bool success = 1;
+  string fileSavedPath = 2;
+  string error=3;
+}
+
+message FileDeleteRequest{
+  string filePath=1;
+}
+
+message FileDeleteResponse{
+  bool success = 1;
+  string error =2;
+}
+
+service FileService{
+  rpc UploadFile(FileUploadRequest)returns(FileUploadResponse);
+  rpc DeleteFile(FileDeleteRequest)returns(FileDeleteResponse);
+}
