@@ -9,3 +9,7 @@ git branch -M main
 git remote add origin https://github.com/luweiqianyi/chat.git
 git push -u origin main
 ```
+
+
+## reference
+* `git`提交规范: `https://zhuanlan.zhihu.com/p/182553920`
