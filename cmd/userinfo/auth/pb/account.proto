@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+package account;
+
+option go_package = "../pb";
+
+message AccountValidateReq {
+  string accountName = 1;
+  string accessToken = 2;
+}
+
+message AccountValidateResp {
+  bool success = 1;
+}
+
+service AccountValidateService {
+  rpc AccountValidate(AccountValidateReq) returns (AccountValidateResp);
+}
