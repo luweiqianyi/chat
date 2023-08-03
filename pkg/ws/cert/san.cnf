@@ -1,0 +1,28 @@
+[req]
+distinguished_name = req_distinguished_name #与下方[req_distinguished_name]一致
+encrypt_key = no
+req_extensions = req_ext #与下方[req_ext]一致
+
+[req_distinguished_name]
+countryName = CN
+countryName_default = CN
+stateOrProvinceName = ZheJiang
+stateOrProvinceName_default = ZheJiang
+localityName = HangZhou
+localityName_default = HangZhou
+organizationalUnitName  = Work
+organizationalUnitName_default  = Work
+commonName = 127.0.0.1
+commonName_max  = 64
+
+[req_ext]
+basicConstraints = CA:FALSE
+keyUsage = nonRepudiation, digitalSignature, keyEncipherment
+subjectAltName = @alt_names #与下方[alt_names]一致
+
+[alt_names]
+DNS.1 = localhost:18080
+DNS.2 = localhost
+DNS.3 = *
+IP.1 = 127.0.0.1
+IP.2 = 192.168.36.24
