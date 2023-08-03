@@ -1,0 +1,31 @@
+version: "3.7"
+
+services:
+  mysql:
+    image: "mysql:${MySQL_VERSION}"
+    container_name: "${APP}-mysql"
+    volumes:
+      - mysql-volume:/var/lib/mysql
+      - ${CONFIG_DIR}/mysql/my.cnf:/etc/my.cnf:rw # 挂载本地文件到docker容器,同时修改权限为rw
+    environment:
+      MYSQL_ROOT_PASSWORD: "${MYSQL_ROOT_PASSWORD}"
+      MYSQL_DATABASE: "${DB_NAME}"
+      TZ: "${TZ}"
+    ports:
+      - "${MYSQL_PORT}:3306"
+
+  redis:
+    image: "redis:${REDIS_VERSION}"
+    container_name: "${APP}-redis"
+    ports:
+      - "${REDIS_HOST_PORT}:6379"
+    volumes:
+      - ${CONFIG_DIR}/redis/redis.conf:/etc/redis.conf:ro
+      - ${DATA_DIR}/redis:/data/:rw
+    entrypoint: [ "redis-server", "/etc/redis.conf" ]
+    environment:
+      TZ: "${TZ}"
+
+
+volumes:
+  mysql-volume:
